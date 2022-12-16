@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run to get dependence:
+First, run to get dependences:
 
 ```bash
 yarn
