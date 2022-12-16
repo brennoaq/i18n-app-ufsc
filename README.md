@@ -17,4 +17,4 @@ npm run dev
 yarn dev
 ```
 
-Open [Applicatiom](i18n-app-ufsc.vercel.app/) with your browser to see the result.
+Open [Application](i18n-app-ufsc.vercel.app/) with your browser to see the result.
