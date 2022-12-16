@@ -1,26 +1,22 @@
-import {
-  Button,
-  Card,
-  CardBody,
-  Container,
-  Flex,
-  Text,
-} from "@chakra-ui/react";
+import { Button, Container, Flex, Text } from "@chakra-ui/react";
 import { SingleDatepicker } from "chakra-dayzed-datepicker";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getCurrencyData } from "../helper/coinCurrenctyHelper";
 import { newsContent } from "../helper/translateHelper";
 
-function Index() {
+function English() {
   const { locale } = useRouter();
+  // @ts-ignore
+  const { title, description } = newsContent[locale!];
+
   const [date, setDate] = useState(new Date());
   const [amount, setAmount] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
-      const curentlyData = await getCurrencyData().then((data) => data.EURBRL);
+      const curentlyData = await getCurrencyData().then((data) => data.USDBRL);
 
       const code = curentlyData?.code as string;
       const bid = curentlyData?.bid as string;
@@ -32,10 +28,6 @@ function Index() {
 
     fetchData();
   }, []);
-
-  // @ts-ignore
-  const { title, description } = newsContent[locale!];
-
   return (
     <Container
       display="flex"
@@ -93,15 +85,15 @@ function Index() {
           date={date}
           onDateChange={setDate}
           configs={{
-            dateFormat: "dd-MM-yyyy",
-            dayNames: "STQQSSD".split(""), // length of 7
-            monthNames: "JAN,FEV,MAR,ABR,MAI,JUN,JUL,AGO,SET,OUT,NOV,DEZ".split(
+            dateFormat: "MM-dd-yyyy",
+            dayNames: "MTWTFSS".split(""), // length of 7
+            monthNames: "JAN,FEB,MAR,APR,MAY,JUN,JUL,AUG,SEP,OCT,NOV,DEC".split(
               ","
             ), // length of 12
           }}
         />
         <Text fontWeight={"bold"}>
-          Convertemos esta quantia em dinheiro local: 1000 BRL
+          We convert this amount on local money: 1000 BRL
         </Text>
         <Text fontWeight={"bold"} fontSize={28}>
           {amount}
@@ -111,4 +103,4 @@ function Index() {
   );
 }
 
-export default Index;
+export default English;

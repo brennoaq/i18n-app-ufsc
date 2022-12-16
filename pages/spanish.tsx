@@ -1,20 +1,16 @@
-import {
-  Button,
-  Card,
-  CardBody,
-  Container,
-  Flex,
-  Text,
-} from "@chakra-ui/react";
+import { Button, Container, Flex, Text } from "@chakra-ui/react";
 import { SingleDatepicker } from "chakra-dayzed-datepicker";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getCurrencyData } from "../helper/coinCurrenctyHelper";
 import { newsContent } from "../helper/translateHelper";
 
-function Index() {
+function Spanish() {
   const { locale } = useRouter();
+  // @ts-ignore
+  const { title, description } = newsContent[locale!];
+
   const [date, setDate] = useState(new Date());
   const [amount, setAmount] = useState("");
 
@@ -32,9 +28,6 @@ function Index() {
 
     fetchData();
   }, []);
-
-  // @ts-ignore
-  const { title, description } = newsContent[locale!];
 
   return (
     <Container
@@ -94,14 +87,14 @@ function Index() {
           onDateChange={setDate}
           configs={{
             dateFormat: "dd-MM-yyyy",
-            dayNames: "STQQSSD".split(""), // length of 7
-            monthNames: "JAN,FEV,MAR,ABR,MAI,JUN,JUL,AGO,SET,OUT,NOV,DEZ".split(
+            dayNames: "LMMJVSD".split(""), // length of 7
+            monthNames: "ENE,FEB,MAR,ABR,MAY,JUN,JUL,AGO,SEP,OCT,NOV,DIC".split(
               ","
             ), // length of 12
           }}
         />
         <Text fontWeight={"bold"}>
-          Convertemos esta quantia em dinheiro local: 1000 BRL
+          Convertimos esta cantidad en dinero local: 1000 BRL
         </Text>
         <Text fontWeight={"bold"} fontSize={28}>
           {amount}
@@ -111,4 +104,4 @@ function Index() {
   );
 }
 
-export default Index;
+export default Spanish;
